@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Projects{% endblock %}
+
+{% block content %} 		
+<article class="i">
+	<p class="iTtl">Accepted Projects:</p>
+	<p></p>
+	<p class="iDes">
+		These are the ideas that have been screened and accepted by the
+		moderators so far. These will update every day, so keep voting!
+	</p>
+	
+	{% for project in projects %}
+       <article class="i">
+		{% if project.author %}
+		<p class="iTtl">{{ project.author.nickname }} wrote</p>
+		{% endif %}
+		<p class="iTtl">{{ project.name }}</p>
+		<p class="iDes">{{ project.description }}</p>
+		{% if admin %}
+		<form action="projects/{{ project.key }}/delete" method="post">
+			{% csrf_token %}
+			<input type="submit" value="Delete" />
+		</form>
+		{% endif %}
+		{% if user.owns_a_group and not user.group.project %}
+		<form action="projects/{{ project.key }}/claim" method="post">
+			{% csrf_token %}
+			<input type="submit" value="Claim this project for your group" />
+		</form>
+		{% endif %}
+		<form action="projects/{{ project.key }}/vote" method="post">
+			{% csrf_token %}
+			<p>
+				<input type="submit" style="height:40px; width:120px;"
+					value="Vote" />
+			</p>
+		</form>
+		<p>Total:{{ project.votes|length }}</p> 
+	</article>
+	{% endfor %}
+</article>
+{% endblock %}

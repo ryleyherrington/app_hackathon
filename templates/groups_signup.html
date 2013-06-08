@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Group Signup{% endblock %}
+
+{% block content %} 
+<article class="i">
+<!--<article class="i big-list-box"> -->
+	<p class="iTtl">Post your idea for an app below!</p>
+	<br/>
+	<p class="iDes">
+	Fill out the form below, but if you want credit you need to login
+	first with your Google account. Click the "Login" button if
+	you're not already signed in (upper right).
+	</p>
+
+	<article class="i">
+	<form action="/groups/create" method="post">
+		{% csrf_token %}
+		<div>
+		<p class ="iTtl">
+			<label for="group-name">Group Name:</label>
+		</p>
+		<input id="group-name" type="text" name="name"/>
+		</div>
+		<div>
+		<p class ="iTtl">
+			<label for="group-public">Anyone may join:</label>
+		</p>
+		<input id="group-public" type="checkbox" name="public" value="public" />
+		</div>
+		<div><input type="submit" value="Make Group"></div>
+	</form>
+	</article>
+
+</article>
+{% endblock %}

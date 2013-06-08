@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Ideas{% endblock %}
+
+{% block content %} 
+<article class="i big-list-box">
+	<p class="iTtl">Post your idea for an app below!</p>
+	<br/>
+	<p class="iDes">
+		Fill out the form below, but if you want credit you need to login
+		first with your Google account. Click the "Login" button if
+		you're not already signed in (upper right).
+	</p>
+
+	<article class="i">
+	<form action="ideas" method="post">
+		{% csrf_token %}
+		<div>
+		<p class ="iTtl">
+			<label for="idea-name">Title:</label>
+		</p>
+		<input id="idea-name" type="text" name="name"/>
+		</div>
+		<div>
+		<p class ="iTtl">
+			<label for="idea-description">Description:</label>
+		</p>
+		<textarea id="idea-description" name="description"
+			rows="3" cols="25">
+		</textarea>
+		</div>
+		<div><input type="submit" value="Post Idea"></div>
+	</form>
+	</article>
+</article>
+
+{% for idea in ideas %}
+	<article class="i list-box">
+	<p class="iTtl">
+		{% if idea.author.nickname %}
+		{{ idea.author }}
+		{% else %}
+		An anonymous person
+		{% endif %}
+		wrote:
+	</p>
+	{% if admin %}
+	<form action="ideas/{{ idea.key }}/approve" method="post">
+		{% csrf_token %}
+		<input type="submit" value="Approve" />
+	</form>
+	<form action="ideas/{{ idea.key }}/delete" method="post">
+		{% csrf_token %}
+		<input type="submit" value="Delete" />
+	</form>
+	{% endif %}
+	<p class="iTtl">{{ idea.name }}</p>
+	<br/>
+	<p class="iDes">
+		{{ idea.description|escape }}
+	</p>
+	</article>
+{% endfor %}
+{% endblock %}

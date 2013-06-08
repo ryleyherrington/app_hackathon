@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Groups{% endblock %}
+
+{% block content %} 		
+<article class="i">
+	<p class="iTtl">Groups:</p>
+	<p></p>
+	<p class="iDes">
+		These are the groups that have already been created by other
+		participants. If the group is public, you may join it. If not, you may
+		contact the group administrator and request to be added to the group.
+	</p>
+	<p class="iDes">
+		If you want to start your own group, click
+		<a href="/groups/signup">here</a>.
+	</p>
+	
+	{% for group in groups %}
+		<article class="i">
+			<p class="iTtl">
+				<a href="/groups/{{ group.key }}">{{ group.name }}</a>
+				{% if admin %}
+				- <a href="/groups/{{ group.key }}/delete">delete</a>
+				{% endif %}
+			</p> 
+		</article>
+	{% endfor %}
+</article>
+{% endblock %}

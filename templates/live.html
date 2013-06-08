@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Live{% endblock %}
+
+{% block content %} 
+<article class="i">
+	<p class="iTtl">Live feed of ideas from Twitter</p>
+	<p></p>
+	<p class="iDes">
+		Tag us with your idea, or include #AppHackathonOSU in your tweet!
+	</p>
+	<p class="iDes">If you like an idea feel free to retweet it!</p>
+</article>
+
+<p></p>
+
+<article class="i">
+	<table>
+		<tr>
+			<td>
+				<a class="twitter-timeline"
+						href="https://twitter.com/AppHackathonOSU"
+						data-widget-id="243850749581336576">
+					Tweets by @AppHackathonOSU
+				</a>
+				<script>
+				!function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (!d.getElementById(id)) {
+						js = d.createElement(s);
+						js.id = id;
+						js.src = "//platform.twitter.com/widgets.js";
+						fjs.parentNode.insertBefore(js, fjs);
+					}
+				}(document, "script", "twitter-wjs");
+				</script>
+			</td>
+			<td>
+				<a class="twitter-timeline"
+						href="https://twitter.com/search?q=%23AppHackathonOSU"
+						data-widget-id="243845330125328384">
+					Tweets about "#AppHackathonOSU"
+				</a>
+				<script>
+				!function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (!d.getElementById(id)) {
+						js = d.createElement(s);
+						js.id = id;
+						js.src = "//platform.twitter.com/widgets.js";
+						fjs.parentNode.insertBefore(js, fjs);
+					}
+				}(document, "script", "twitter-wjs");
+				</script>
+			</td>
+		</tr>
+	</table>
+</article>
+{% endblock %}

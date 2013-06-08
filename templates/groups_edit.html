@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Group Details{% endblock %}
+
+{% block content %}
+<article class="i">
+	<form action="/groups/{{ group.key }}" method="POST">
+		{% csrf_token %}
+		<label for="group-name">Name:</label>
+		<input id="group-name" name="name" type="text"
+		       value="{{ group.name }}" /><br />
+		<label for="group-public">Public:</label>
+		<input id="group-public" name="public"
+		{% if group.public %}
+		       checked="checked"
+		{% endif %}
+		       type="checkbox" value="public" />
+		<p class="iTtl">
+			{% if group.project %}
+			<p>Current project: {{ group.project.name }}</p>
+			<label for="group-abandon-project">Abandon project:</label>
+			<input id="group-abandon-project" name="abandon-project"
+			       type="checkbox" value="abandon" />
+			{% else %}
+			<p>Claim a project <a href="/projects">here</a></p>
+			{% endif %}
+		</p>
+		<label for="submission-text">Link Text:</label>
+		<input type="text" name="submission-text" id="submission-text" /><br />
+		<label for="submission-url">Link URL:</label>
+		<input type="text" name="submission-url" id="submission-url" /><br />
+		{% if group.submissions.get %}
+		<p>Submissions:</p>
+		<table>
+			<thead>
+				<tr>
+					<th>Submission</th>
+					<th>Remove</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for submission in group.submissions %}
+				<tr>
+					<td>
+						<a href="{{ submission.url }}">{{ submission.text }}</a>
+					</td>
+					<td>
+						<input type="checkbox" name="remove-submission"
+						       value="{{ submission.key }}" />
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		</ul>
+		{% endif %}
+		{% if group.pending_users %}
+		<p>Awaiting join approval:</p>
+		<table>
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Approve</td>
+					<td>Refuse</td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for pending in group.pending_users %}
+				<tr>
+					<td>{{ pending.nickname }}</td>
+					<td><input type="radio" name="approve-{{pending}}"
+					           value="approve" /></td>
+					<td><input type="radio" name="approve-{{pending}}"
+					           value="refuse" /></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% endif %}
+		<p>Current members:</p>
+		<table>
+			<thead>
+				<tr>
+					<td>Member</td>
+					<td>Remove</td>
+					<td>Owner</td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for member in group.members %}
+				<tr>
+					<td>{{ member.nickname }}</td>
+					<td><input type="checkbox" name="remove"
+					           value="{{ member }}" /></td>
+					{# this radio is selected if the member is the owner #}
+					{# sorry the code here is ugly as shit. clean it up if #}
+					{# you feel the need #}
+					<td><input type="radio" name="owner"
+					{% if member == group.owner %}
+					           checked="checked"
+					{% endif %}
+					           value="{{ member }}" /></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<label for="group-delete">Delete Group:</label>
+		<input type="checkbox" name="delete" value="delete" /><br />
+		<input type="submit" value="Save changes" />
+	</form>
+</article>
+{% endblock %}

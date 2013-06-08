@@ -1,0 +1,130 @@
+html, body {
+  font-family: Verdana, Helvetica, sans-serif;
+  background-color: #FFF;
+  color:#404040;
+  text-align:left;
+  margin:0;
+  padding:0;
+  height:30%;
+}
+.big-list-box {
+	width: auto;
+	height: auto;
+}
+.list-box {
+	width: auto;
+	height: auto;
+}
+#header{
+	width: 30%;
+	height: auto;
+	/*border-top: 5px solid #999;*/
+    background-color:#404040;
+	position:fixed;
+  	text-align:center;
+	color: white;
+	font-style: italic;
+	font-weight: bold;
+	top: 0;
+}
+#footer {
+	width: 30%;
+	border-top: 5px solid #999;
+	background: #fff;
+	position: fixed;
+	bottom: 0;
+	/*padding: 8px 0 20px 0;
+	z-index: 3000;
+*/
+}
+a {
+	color:#ffffff;
+}
+.pTtl {
+	display: block;
+    background-color:#404040;
+	margin-left: 0px;
+	padding: -2px;
+	color: #fff;
+	font-size: 150%;
+	font-weight: bold;
+	font-style: italic;
+	top: 0px;
+}
+#navBtn ul {
+	text-indent: -40px; 
+	list-style-type: none;
+}
+#navBtn ul li {
+	display: inline;
+}
+#navBtn ul a {
+	text-decoration: none;
+	padding: 0 3px;
+	color:#FF8800;
+	font-weight: bold;
+}
+#navBtn ul a:hover {
+	background-color:#FF8800;
+	color:#fff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.i {
+	display: block;
+	padding: 10px;
+	margin: 2px;
+	position: relative;
+	background: -webkit-gradient(linear, 0% 0%, 0% 30%, from(#FFF), to(#EEE));
+	-webkit-box-shadow: rgba(0, 0, 0, 0.398438) 0px 1px 3px;
+	-webkit-border-radius: 5px;
+	background: -moz-gradient(linear, 0% 0%, 0% 30%, from(#FFF), to(#EEE));
+	-moz-box-shadow: rgba(0, 0, 0, 0.398438) 0px 1px 3px;
+	-moz-border-radius: 5px;
+}
+.iTtl {
+	color: #FF8800;
+	margin: 0 auto;
+	position: relative;
+	font-weight: bold;
+}
+.iDes {
+	color: #404040;
+	margin: 0 5px 5px 5px;
+	font-size: 90%;
+}
+.iLnk {
+	color: #FF8800;
+	margin-left: 5px;
+	font-size: 75%;
+	font-style: italic;
+}
+.ftr {
+	line-height: 175%;
+	font-size: 60%;
+	text-align: center;
+}
+.smTxt {
+	font-size: 80%;
+	line-height: 50%;
+}
+.ctr {
+	text-align: center;
+}
+.imgR {
+	float: right;
+	margin: 5px;
+	clear: both;
+	/*  create shadow behind images  */
+	/*  -webkit-box-shadow: 0 0 5px #000; */
+	/*  -moz-box-shadow: 0 0 5px #000; */
+}
+.imgL {
+	float: left;
+	margin:5px;
+	clear: both;
+	/*  create shadow behind images  */
+	/*  -webkit-box-shadow: 0 0 5px #000; */
+	/*  -moz-box-shadow: 0 0 5px #000; */
+}
+
